@@ -8,5 +8,10 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+		<StyleInclude Source="avares://Lexicon_AvaloniaVersion/Assets/LexiconStyles.axaml" />
     </Application.Styles>
+
+	<Application.Resources>
+		
+	</Application.Resources>
 </Application>
