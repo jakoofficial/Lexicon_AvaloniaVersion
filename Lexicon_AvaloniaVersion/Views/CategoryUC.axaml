@@ -10,13 +10,22 @@
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 		<Border BorderBrush="Gray" Margin="8 4" BorderThickness="0 0 0 1">
-			<StackPanel Grid.Row="0" Orientation="Horizontal">
-				<TextBlock Text="Cat Title" Margin="0 0 5 0" FontSize="14"/>
-				<Button x:Name="CatBtn" Content="Open"/>
-			</StackPanel>
+			<ItemsControl Items="{Binding $parent[Window].DataContext.categories}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Grid.Row="0" Orientation="Horizontal">
+							<TextBlock Text="{Binding CategoryName}"
+									   VerticalAlignment="Center"
+									   Margin="0 0 5 0" FontSize="14"/>
+							<Button x:Name="CatBtn" Command="{Binding $parent[Window].DataContext.OpenCloseCategory}" Content=">"/>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
 		</Border>
 		<StackPanel Grid.Row="1" Margin="10 0">
-			<Button x:Name="NewEntryBtn" Content="New Entry"/>
+			<Button x:Name="NewEntryBtn" Content="New Entry"
+					Command="{Binding $parent[Window].DataContext.NewEntry}"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

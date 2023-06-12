@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Lexicon_AvaloniaVersion.Views.EditEntryView">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Title" FontSize="14"
+						   VerticalAlignment="Center" Margin="10 5 0 0"/>
+				<TextBox x:Name="EditEntryTitle" Margin="10 5 0 0"
+                     Width="150" HorizontalAlignment="Left"
+					 Text="{Binding tmpEntry.Title}"/>
+
+				<TextBlock Text="Category" FontSize="14"
+						   VerticalAlignment="Center" Margin="20 5 0 0"/>
+				<ComboBox x:Name="CategoryComboBox" MinWidth="100" Margin="10 5 0 0">
+				</ComboBox>
+			</StackPanel>
+			<TextBlock Text="Entry text" Margin="10 10 0 0" FontSize="14"/>
+			<TextBox x:Name="EditEntryTextBox"
+					 Margin="10 5 10 5" Padding="10 5"
+					 MinHeight="100" Text="{Binding tmpEntry.EntryText}"/>
+		</StackPanel>
+		<StackPanel Grid.Row="1">
+			<TextBlock Text="Code block" Margin="10 10 0 0" FontSize="14"/>
+			<TextBox x:Name="EditEntryCodeBlock" Grid.Row="1" Classes="CodeBlock"
+                 Height="150" Margin="10 5"
+                 IsReadOnly="False" Text="{Binding tmpEntry.CodeArea}"/>
+			<StackPanel Orientation="Horizontal">
+				<Button x:Name="EditConfirmBtn" Content="Confirm" Width="100" MinHeight="25" Margin="10 0"/>
+				<Button x:Name="EditCancelBtn" Content="Cancel"
+						Width="100" MinHeight="25" Margin="10 0"
+						Command="{Binding $parent[Window].DataContext.GoBack}"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</UserControl>
