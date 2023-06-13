@@ -5,35 +5,31 @@ using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reactive;
 
 namespace Lexicon_AvaloniaVersion.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         ViewModelBase content;
-        ObservableCollection<Category> categories { get; set; } = new ObservableCollection<Category>();
-        List<Entry> entries = new List<Entry>();
-
         public ViewModelBase Content 
         { 
             get => content; 
             private set => this.RaiseAndSetIfChanged(ref content, value); 
         }
 
+        public ViewModelBase[] viewArr =
+        {
+            new EntryViewModel(),
+            new EditEntryViewModel()
+        };
+        
+        public ReactiveCommand<string, Unit> GoToViewCommand { get; }
+
         public MainWindowViewModel()
         {
-            Content = new EntryViewModel();
-
-            //Testing the category
-            entries.Add(
-                new Entry(0, 0, "as", "as", "lask")
-                );
-
-            categories.Add(new Category(
-                0, "TestCat", entries));
-            categories.Add(new Category(
-                0, "TestCatsecond", entries));
-            
+            GoToViewCommand = ReactiveCommand.Create<string>(GoToView);
+            Content = viewArr[0];
         }
 
         public void NewEntry()
@@ -44,9 +40,10 @@ namespace Lexicon_AvaloniaVersion.ViewModels
         {
             Content = new EditEntryViewModel(false);
         }
-        public void GoBack()
+        public void GoToView(string viewpage)
         {
-            Content = new EntryViewModel();
+            int.TryParse(viewpage, out int viewId);
+            Content = viewArr[viewId];
         }
 
         public bool isCatOpen = false;

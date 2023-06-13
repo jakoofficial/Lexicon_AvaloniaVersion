@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Lexicon_AvaloniaVersion.ViewModels;
 
 namespace Lexicon_AvaloniaVersion.Views
 {
@@ -6,6 +7,7 @@ namespace Lexicon_AvaloniaVersion.Views
     {
         public EntryView()
         {
+            DataContext = new EntryViewModel();
             InitializeComponent();
         }
     }

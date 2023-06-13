@@ -32,4 +32,16 @@
 	<Style Selector="Button">
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
 	</Style>
+
+	<Style Selector="Button.CatButton">
+		<Setter Property="BorderThickness" Value="0 0 0 2"/>
+		<Setter Property="BorderBrush" Value="Black"/>
+		<Setter Property="Foreground" Value="Azure"/>
+	</Style>
+	
+	<Style Selector="Button.EntryButton">
+		<Setter Property="FontSize" Value="8"/>
+		<Setter Property="MinWidth" Value="20"/>
+		<Setter Property="MinHeight" Value="16"/>
+	</Style>
 </Styles>

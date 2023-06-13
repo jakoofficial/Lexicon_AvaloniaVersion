@@ -36,7 +36,7 @@
 				<Button x:Name="EditConfirmBtn" Content="Confirm" Width="100" MinHeight="25" Margin="10 0"/>
 				<Button x:Name="EditCancelBtn" Content="Cancel"
 						Width="100" MinHeight="25" Margin="10 0"
-						Command="{Binding $parent[Window].DataContext.GoBack}"/>
+						Command="{Binding $parent[Window].DataContext.GoToView}" CommandParameter="0"/>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

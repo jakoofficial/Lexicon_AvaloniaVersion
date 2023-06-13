@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ex="using:Lexicon_AvaloniaVersion.Extra"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Lexicon_AvaloniaVersion.Views.CategoryUC">
@@ -10,18 +11,26 @@
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 		<Border BorderBrush="Gray" Margin="8 4" BorderThickness="0 0 0 1">
-			<ItemsControl Items="{Binding $parent[Window].DataContext.categories}">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<StackPanel Grid.Row="0" Orientation="Horizontal">
-							<TextBlock Text="{Binding CategoryName}"
-									   VerticalAlignment="Center"
-									   Margin="0 0 5 0" FontSize="14"/>
-							<Button x:Name="CatBtn" Command="{Binding $parent[Window].DataContext.OpenCloseCategory}" Content=">"/>
-						</StackPanel>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
+			<StackPanel>
+				<ItemsControl Items="{Binding categories}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Grid>
+								<StackPanel>
+									<ex:CategoryCustomButton Classes="CatButton" Content="{Binding CategoryName}"/>
+									<ItemsControl Items="{Binding Entries}">
+										<ItemsControl.ItemTemplate>
+											<DataTemplate>
+												<Button Classes="EntryButton" Content="{Binding EntryName}"/>
+											</DataTemplate>
+										</ItemsControl.ItemTemplate>
+									</ItemsControl>
+								</StackPanel>
+							</Grid>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
 		</Border>
 		<StackPanel Grid.Row="1" Margin="10 0">
 			<Button x:Name="NewEntryBtn" Content="New Entry"
