@@ -1,7 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ex="using:Lexicon_AvaloniaVersion.Extra"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Lexicon_AvaloniaVersion.Views.CategoryUC">
@@ -12,12 +11,15 @@
 		</Grid.RowDefinitions>
 		<Border BorderBrush="Gray" Margin="8 4" BorderThickness="0 0 0 1">
 			<StackPanel>
+				<Border BorderBrush="Gray" BorderThickness="0 0 0 1" Margin="0 0 0 2">
+					<TextBlock Text="Categories" FontSize="14" FontWeight="Bold"/>
+				</Border>
 				<ItemsControl Items="{Binding categories}">
 					<ItemsControl.ItemTemplate>
 						<DataTemplate>
 							<Grid>
 								<StackPanel>
-									<ex:CategoryCustomButton Classes="CatButton" Content="{Binding CategoryName}"/>
+									<Button Classes="CatButton" Content="{Binding CategoryName}"/>
 									<ItemsControl Items="{Binding Entries}">
 										<ItemsControl.ItemTemplate>
 											<DataTemplate>

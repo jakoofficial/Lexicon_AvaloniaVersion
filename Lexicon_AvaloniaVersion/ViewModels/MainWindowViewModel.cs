@@ -12,6 +12,7 @@ namespace Lexicon_AvaloniaVersion.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         ViewModelBase content;
+
         public ViewModelBase Content 
         { 
             get => content; 

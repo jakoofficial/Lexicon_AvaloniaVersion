@@ -19,8 +19,8 @@ namespace Lexicon_AvaloniaVersion.Models
         {
             EntryId = entryId;
             CategoryId = categoryId;
-            EntryName = $"Entry_{entryId}";
             Title = title;
+            EntryName = $"{title}_{entryId}";
             EntryText = entryText;
             CodeArea = codeArea;
         }
