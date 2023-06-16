@@ -65,5 +65,11 @@
 		<Setter Property="Padding" Value="5 5 12 5"/>
 		<Setter Property="CornerRadius" Value="0"/>
 		<Setter Property="Margin" Value="0 0 0 2"/>
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>
+	
+	<Style Selector="Button:pointerover.EntryButton /template/ ContentPresenter">
+		<Setter Property="Background" Value="DimGray"/>
+		<Setter Property="Padding" Value="8 5 5 5"/>
 	</Style>
 </Styles>

@@ -16,7 +16,7 @@ namespace Lexicon_AvaloniaVersion.ViewModels
         public ViewModelBase Content 
         { 
             get => content; 
-            private set => this.RaiseAndSetIfChanged(ref content, value); 
+            private set => this.RaiseAndSetIfChanged(ref content, value);
         }
 
         public ViewModelBase[] viewArr =

@@ -1,8 +1,11 @@
 ﻿using Lexicon_AvaloniaVersion.Models;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +19,7 @@ namespace Lexicon_AvaloniaVersion.ViewModels
 
         public EntryViewModel()
         {
+            OpenCloseCommand = ReactiveCommand.Create<int>(OpenClose);
             //Testing the category
             entries.Add(
                 new Entry(0, 0, "catEntry", "as", "lask")
@@ -28,9 +32,26 @@ namespace Lexicon_AvaloniaVersion.ViewModels
                 );
 
             categories.Add(new Category(
-                0, "TestCat", entries2));
+                1, "TestCat", entries2));
             categories.Add(new Category(
-                1, "TestCatsecond", entries));
+                2, "TestCatsecond", entries));
+        }
+
+        //private bool _showCategory = false;
+
+        //public bool ShowCategory
+        //{
+        //    get => _showCategory;
+        //    set => this.RaiseAndSetIfChanged(ref _showCategory, value);
+        //}
+
+        public ReactiveCommand<int, Unit> OpenCloseCommand { get; }
+        public string Hello { get; set; } = "Yay!";
+        public void OpenClose(int categoryId)
+        {
+            Category category = categories[categoryId-1];
+            //ShowCategory = !ShowCategory;
+            category.ShowCategory = !category.ShowCategory;
         }
     }
 }
