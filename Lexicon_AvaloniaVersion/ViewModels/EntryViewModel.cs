@@ -1,4 +1,5 @@
 ﻿using Lexicon_AvaloniaVersion.Models;
+using Lexicon_AvaloniaVersion.Views;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -13,44 +14,55 @@ namespace Lexicon_AvaloniaVersion.ViewModels
 {
     public class EntryViewModel : ViewModelBase
     {
+        //Try a list
         ObservableCollection<Category> categories { get; set; } = new ObservableCollection<Category>();
         List<Entry> entries = new List<Entry>();
-        List<Entry> entries2 = new List<Entry>();
 
         public EntryViewModel()
         {
             OpenCloseCommand = ReactiveCommand.Create<int>(OpenClose);
             //Testing the category
             entries.Add(
-                new Entry(0, 0, "catEntry", "as", "lask")
+                new Entry(0, 1, "catEntry", "as", "lask")
                 );
-            entries2.Add(
-                new Entry(0, 0, "Pizza", "as", "lask")
+            entries.Add(
+                new Entry(0, 2, "Pizza", "as", "lask")
                 );
-            entries2.Add(
-                new Entry(1, 0, "Burger Rec", "as", "lask")
+            entries.Add(
+                new Entry(1, 2, "Burger Rec", "as", "lask")
                 );
 
             categories.Add(new Category(
-                1, "TestCat", entries2));
+                1, "TestCat", GetEntriesForCategory(1)));
             categories.Add(new Category(
-                2, "TestCatsecond", entries));
+                2, "TestCatsecond", GetEntriesForCategory(2)));
         }
 
-        //private bool _showCategory = false;
+        public List<Entry> GetEntriesForCategory(int CategoryId)
+        {
+            List<Entry> listOfEntries = entries;
+            if (listOfEntries.Count != 0)
+            {
+                foreach (var entry in listOfEntries)
+                {
+                    Entry e = (Entry)entry;
+                    if (e != null && entry.CategoryId == CategoryId)
+                    {
 
-        //public bool ShowCategory
-        //{
-        //    get => _showCategory;
-        //    set => this.RaiseAndSetIfChanged(ref _showCategory, value);
-        //}
+                        listOfEntries.Add(e);
+                    }
+                }
+                return listOfEntries;
+            }
+            return new List<Entry>();
+        }
 
         public ReactiveCommand<int, Unit> OpenCloseCommand { get; }
+        //public ReactiveCommand<Entry>
         public string Hello { get; set; } = "Yay!";
         public void OpenClose(int categoryId)
         {
             Category category = categories[categoryId-1];
-            //ShowCategory = !ShowCategory;
             category.ShowCategory = !category.ShowCategory;
         }
     }

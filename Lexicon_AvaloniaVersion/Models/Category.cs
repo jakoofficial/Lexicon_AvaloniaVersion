@@ -13,7 +13,7 @@ namespace Lexicon_AvaloniaVersion.Models
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        
+
         public List<Entry>? Entries { get; set; } = new List<Entry>();
         private bool _showCategory = false;
 
@@ -29,5 +29,7 @@ namespace Lexicon_AvaloniaVersion.Models
             CategoryName = categoryName;
             Entries = entries;
         }
+
+
     }
 }
