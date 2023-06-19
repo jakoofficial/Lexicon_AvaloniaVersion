@@ -13,18 +13,19 @@ namespace Lexicon_AvaloniaVersion.ViewModels
     {
         ViewModelBase content;
 
-        public ViewModelBase Content 
-        { 
-            get => content; 
+        public ViewModelBase Content
+        {
+            get => content;
             private set => this.RaiseAndSetIfChanged(ref content, value);
         }
 
         public ViewModelBase[] viewArr =
         {
             new EntryViewModel(),
-            new EditEntryViewModel()
+            new EditEntryViewModel(),
+            new EditCategoryViewModel()
         };
-        
+
         public ReactiveCommand<string, Unit> GoToViewCommand { get; }
 
         public MainWindowViewModel()
@@ -35,11 +36,20 @@ namespace Lexicon_AvaloniaVersion.ViewModels
 
         public void NewEntry()
         {
-            Content = new EditEntryViewModel(true);
+            Content = new EditEntryViewModel(new Entry(), true);
         }
-        public void EditEntry()
+        public void EditEntry(Entry entry)
         {
-            Content = new EditEntryViewModel(false);
+            Entry tmpEntry = new();
+            if ((Entry)entry != null)
+            {
+                tmpEntry = entry;
+            }
+            Content = new EditEntryViewModel(tmpEntry, false);
+        }
+        public void EditCategory()
+        {
+            Content = new EditCategoryViewModel();
         }
         public void GoToView(string viewpage)
         {

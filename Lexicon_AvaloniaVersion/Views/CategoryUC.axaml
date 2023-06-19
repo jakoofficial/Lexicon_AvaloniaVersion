@@ -10,7 +10,8 @@
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
-		<Border BorderBrush="Gray" Margin="8 4" BorderThickness="0 0 0 1">
+		<!--375-->
+		<Border BorderBrush="Gray" Margin="8 4" Height="375" BorderThickness="0 0 0 1">
 			<StackPanel>
 				<Border BorderBrush="Gray" BorderThickness="0 0 0 1" Margin="0 0 0 2">
 					<TextBlock Text="Categories" FontSize="14" FontWeight="Bold"/>
@@ -20,18 +21,27 @@
 						<DataTemplate>
 							<Grid>
 								<StackPanel>
-									<Button Classes="CatButton" 
+									<Button x:Name="CategoryButton"
+											Classes="CatButton"
 											Command="{Binding DataContext.OpenClose, 
 											RelativeSource={RelativeSource FindAncestor, 
-											AncestorType={x:Type uc:CategoryUC}}}" 
-											CommandParameter="{Binding CategoryId}"
-											Content="{Binding CategoryName}"/>
+											AncestorType={x:Type uc:CategoryUC}}}"
+											CommandParameter="{Binding CategoryId}">
+										<TextBlock Text="{Binding CategoryName}"
+												   TextTrimming="CharacterEllipsis"
+												   Width="140"
+												   ToolTip.Tip="{Binding CategoryName}"/>
+									</Button>
 
-									<Grid IsVisible="{Binding ShowCategory}"> 
+									<Grid IsVisible="{Binding ShowCategory}">
 										<ItemsControl Items="{Binding Entries}">
 											<ItemsControl.ItemTemplate>
 												<DataTemplate>
-													<Button Classes="EntryButton" Content="{Binding EntryName}"/>
+													<Button Classes="EntryButton" Content="{Binding Title}"
+															Command="{Binding DataContext.SetEntry, 
+															RelativeSource={RelativeSource FindAncestor, 
+															AncestorType={x:Type uc:CategoryUC}}}"
+															CommandParameter="{Binding EntryId}"/>
 												</DataTemplate>
 											</ItemsControl.ItemTemplate>
 										</ItemsControl>
@@ -43,9 +53,20 @@
 				</ItemsControl>
 			</StackPanel>
 		</Border>
-		<StackPanel Grid.Row="1" Margin="10 0">
-			<Button x:Name="NewEntryBtn" Content="New Entry"
-					Command="{Binding $parent[Window].DataContext.NewEntry}"/>
+		<!-- Command="{Binding $parent[Window].DataContext.NewEntry}" -->
+		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10 0">
+			<Button x:Name="NewEntryBtn" Content="New">
+				<Button.Flyout>
+					<Flyout ShowMode="TransientWithDismissOnPointerMoveAway" Placement="TopEdgeAlignedLeft">
+						<StackPanel MinWidth="10" Orientation="Vertical">
+							<Button Width="100" Content="Category"
+									Command="{Binding $parent[Window].DataContext.EditCategory}"/>
+							<Button Width="100" Content="Entry"
+									Command="{Binding $parent[Window].DataContext.NewEntry}"/>
+						</StackPanel>
+					</Flyout>
+				</Button.Flyout>
+			</Button>
 		</StackPanel>
 	</Grid>
 </UserControl>

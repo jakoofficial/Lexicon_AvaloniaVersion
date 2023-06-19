@@ -15,6 +15,10 @@ namespace Lexicon_AvaloniaVersion.Models
         public string EntryText { get; set; }
         public string CodeArea { get; set; }
 
+        public Entry()
+        {
+
+        }
         public Entry(int entryId, int categoryId, string title, string entryText, string codeArea)
         {
             EntryId = entryId;

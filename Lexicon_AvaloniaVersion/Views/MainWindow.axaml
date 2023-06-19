@@ -9,6 +9,7 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Lexicon_AvaloniaVersion"
         Background="#ddd" CanResize="False" WindowStartupLocation="CenterScreen"
+		ExtendClientAreaToDecorationsHint="True"
 		Content="{Binding Content}">
 
 	<Design.DataContext>

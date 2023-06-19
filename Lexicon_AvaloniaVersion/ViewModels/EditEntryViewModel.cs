@@ -13,12 +13,13 @@ namespace Lexicon_AvaloniaVersion.ViewModels
     {
         public bool IsNew { get; private set; }
 
-        public Entry tmpEntry { get; private set; }
+        public Entry? tmpEntry { get; private set; } = new Entry();
 
-        public EditEntryViewModel(bool isNew = false) 
+        public EditEntryViewModel(Entry? entry = null, bool isNew = false) 
         {
             IsNew = isNew;
-            tmpEntry = new Entry(0, 0, "EntryTest", "Hello", "Public");
+            //new Entry(0, 0, "EntryTest", "Hello", "Public");
+            tmpEntry = entry;
         }
 
         public void CreateEntry()

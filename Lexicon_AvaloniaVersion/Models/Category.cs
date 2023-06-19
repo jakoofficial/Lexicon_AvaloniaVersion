@@ -30,6 +30,5 @@ namespace Lexicon_AvaloniaVersion.Models
             Entries = entries;
         }
 
-
     }
 }
